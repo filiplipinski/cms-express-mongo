@@ -1,0 +1,23 @@
+extends layout 
+
+block content
+  h1= title
+
+  if showQuiz
+    form(method='post')
+      p Jaka jest twoja ulubiona pora roku?
+      ul  
+        each item in data
+          li
+            label=item.title
+            input(type='radio' name='quizId' value=item._id)
+      input(type='submit' value='Zaglosuj')
+      p Aby zobaczyc wyniki, oddaj glos
+  else
+    h1 Dokonales juz glosu
+    p Wyniki:
+    ul
+      each item in data
+        li #{item.title} głosów: #{item.vote} (#{Math.round(item.vote/sum*100)}%)
+    p Ilosc oddanych glosow #{sum}
+
